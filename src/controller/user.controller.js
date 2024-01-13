@@ -1,7 +1,7 @@
 const express = require('express');
 const routeUser = express.Router();
 const { buildResponse } = require('../helper/buildResponse');
-const { createUser, getAllUser, updateUserById, getUserById, deleteUserById } = require('../service/user.service');
+const { createUser, getAllUser, updateUserById, getUserById, deleteUserById, updateUserPath } = require('../service/user.service');
 
 routeUser.post('/', async (req, res) => {
   try {
@@ -47,6 +47,17 @@ routeUser.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const data = await getUserById(id);
+    buildResponse(200, data, res);
+  } catch (error) {
+    buildResponse(404, error.message, res);
+  }
+});
+
+routeUser.patch('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, surname, email, pwd } = req.body;
+    const data = await updateUserPath(id, name, surname, email, pwd);
     buildResponse(200, data, res);
   } catch (error) {
     buildResponse(404, error.message, res);

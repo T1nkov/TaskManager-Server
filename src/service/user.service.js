@@ -1,4 +1,12 @@
-const { createUserDB, getAllUserDB, updateUserByIdDB, getUserByEmailDB, getUserByIdDB, deleteUserByIdDB } = require('../repository/user.repository');
+const {
+  createUserDB,
+  getAllUserDB,
+  updateUserByIdDB,
+  getUserByEmailDB,
+  getUserByIdDB,
+  deleteUserByIdDB,
+  updateUserPathDB,
+} = require('../repository/user.repository');
 
 async function createUser(name, surname, email, pwd) {
   const foundUser = await getUserByEmailDB(email);
@@ -34,4 +42,11 @@ async function deleteUserById(id) {
   if (!data.length) throw new Error('data does not create');
   return data;
 }
-module.exports = { createUser, getAllUser, updateUserById, getUserByEmail, getUserById, deleteUserById };
+
+async function updateUserPath(id, name, surname, email, pwd) {
+  const data = await updateUserPathDB(id, name, surname, email, pwd);
+  if (id < 0) throw new Error('id is not valid');
+  if (!data.length) throw new Error('data does not create');
+  return data;
+}
+module.exports = { createUser, getAllUser, updateUserById, getUserByEmail, getUserById, deleteUserById, updateUserPath };

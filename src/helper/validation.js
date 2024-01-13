@@ -1,3 +1,3 @@
-function isValidSkillId(req,res,next){
-    
-}
+// function isValidSkillId(req,res,next){
+
+// }

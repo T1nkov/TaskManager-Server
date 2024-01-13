@@ -54,4 +54,15 @@ async function deleteUserByIdDB(id) {
   const { rows } = await client.query(sql, [id]);
   return rows;
 }
-module.exports = { createUserDB, getAllUserDB, updateUserByIdDB, getUserByEmailDB, getUserByIdDB, deleteUserByIdDB };
+
+async function updateUserPathDB(id, name, surname, email, pwd) {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN')
+    const sql = ''
+  } catch (error) {
+    await client.query('ROLLBACK');
+    return [];
+  }
+}
+module.exports = { createUserDB, getAllUserDB, updateUserByIdDB, getUserByEmailDB, getUserByIdDB, deleteUserByIdDB, updateUserPathDB };
