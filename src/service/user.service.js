@@ -43,8 +43,8 @@ async function deleteUserById(id) {
   return data;
 }
 
-async function updateUserPath(id, name, surname, email, pwd) {
-  const data = await updateUserPathDB(id, name, surname, email, pwd);
+async function updateUserPath(id, body) {
+  const data = await updateUserPathDB(id, body);
   if (id < 0) throw new Error('id is not valid');
   if (!data.length) throw new Error('data does not create');
   return data;

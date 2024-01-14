@@ -55,11 +55,17 @@ async function deleteUserByIdDB(id) {
   return rows;
 }
 
-async function updateUserPathDB(id, name, surname, email, pwd) {
+async function updateUserPathDB(id, body) {
   const client = await pool.connect();
   try {
-    await client.query('BEGIN')
-    const sql = ''
+    await client.query('BEGIN');
+    const queryOldUser = 'SELECT * FROM users where id = $1';
+    const { rows: old } = await client.query(queryOldUser, [id]);
+    const patchedUser = { ...old[0], ...body };
+    const quertyText = 'UPDATE users set name = $1, surname = $2, email = $3, pwd = $4 where id = $5 returning *';
+    const { rows: patchedRows } = await client.query(quertyText, [patchedUser.name, patchedUser.surname, patchedUser.email, patchedUser.pwd, id]);
+    await client.query('COMMIT');
+    return patchedRows;
   } catch (error) {
     await client.query('ROLLBACK');
     return [];

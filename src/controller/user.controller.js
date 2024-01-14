@@ -56,8 +56,8 @@ routeUser.get('/:id', async (req, res) => {
 routeUser.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, surname, email, pwd } = req.body;
-    const data = await updateUserPath(id, name, surname, email, pwd);
+    const body = req.body;
+    const data = await updateUserPath(id, body);
     buildResponse(200, data, res);
   } catch (error) {
     buildResponse(404, error.message, res);
