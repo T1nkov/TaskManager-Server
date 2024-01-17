@@ -63,4 +63,15 @@ routeUser.patch('/:id', async (req, res) => {
     buildResponse(404, error.message, res);
   }
 });
+
+routeUser.patch('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const data = await updateUserPath(id, body);
+    buildResponse(200, data, res);
+  } catch (error) {
+    buildResponse(404, error.message, res);
+  }
+});
 module.exports = routeUser;
