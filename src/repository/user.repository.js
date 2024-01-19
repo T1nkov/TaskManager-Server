@@ -4,8 +4,11 @@ async function createUserDB(name, surname, email, pwd) {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
+
     const sql = 'INSERT INTO users (name, surname,email,pwd) values ($1,$2,$3,$4) returning *';
+
     const { rows } = await client.query(sql, [name, surname, email, pwd]);
+
     await client.query('commit');
     return rows;
   } catch (error) {

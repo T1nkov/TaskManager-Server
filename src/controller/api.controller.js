@@ -11,3 +11,5 @@ routeApi.post('/reg', async (req, res) => {
     buildResponse(404, error.message, res);
   }
 });
+
+module.exports = routeApi;

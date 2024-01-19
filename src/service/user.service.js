@@ -50,4 +50,3 @@ async function updateUserPath(id, body) {
   return data;
 }
 module.exports = { createUser, getAllUser, updateUserById, getUserByEmail, getUserById, deleteUserById, updateUserPath };
-

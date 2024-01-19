@@ -56,5 +56,4 @@ async function deleteSkillDB(id) {
   }
 }
 
-
 module.exports = { createTaskDB, getTaskDB, updateTaskDB, getTaskByIdDB, deleteSkillDB };
