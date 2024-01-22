@@ -25,7 +25,7 @@ async function updateTaskDB(id, task, user_id) {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
-    const sql = 'UPDATE tasks set task = $1, user_id = $2 where id = $3';
+    const sql = 'UPDATE tasks set task = $1, user_id = $2 where id = $3 returning *';
     const { rows } = await client.query(sql, [task, user_id, id]);
     await client.query('COMMIT');
     return rows;
