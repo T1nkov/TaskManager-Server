@@ -7,17 +7,15 @@ async function createUserApi(name, surname, email, pwd) {
   const findEmail = await getUserByEmailDB(email);
   if (findEmail.length) throw new Error('USER IS ALREDY EXIST');
   const hashPwd = await bcrypt.hash(pwd, saltround);
-  const [user] = await createUserApiDB(name, surname, email, hashPwd);
-  if (!user) throw new Error('data is empty');
-  delete user.pwd;
-  return { ...user, pwd: undefined };
+  const user = await createUserApiDB(name, surname, email, hashPwd);
+  if (!user.length) throw new Error('data is empty');
+  return user;
 }
 
 async function authUserApi(email, pwd) {
   const findEmail = await getUserByEmailDB(email);
   if (!findEmail.length) throw new Error('WRONG PASSWORD OR EMAIL');
-  const data = findEmail[0];
-  const comparePwd = await bcrypt.compare(pwd, data.pwd);
+  const comparePwd = await bcrypt.compare(pwd, findEmail[0].pwd);
   if (!comparePwd) throw new Error('WRONG PASSWORD OR EMAIL');
   return findEmail;
 }
