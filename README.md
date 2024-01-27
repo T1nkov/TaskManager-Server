@@ -1,4 +1,4 @@
-# TaskManager-Server
+# Task-Manager Server
 
 This is the server-side code for a task management application, which allows users to create, manage, and track their tasks. This README provides an overview of the project and instructions for setting up and running the server.
 
@@ -14,10 +14,9 @@ This is the server-side code for a task management application, which allows use
 
 - Node.js: A JavaScript runtime environment.
 - Express.js: A web application framework for Node.js.
-- MongoDB: A NoSQL document database for storing task and user data.
+- PostgreSQL: document database for storing task and user data.
 - JSON Web Tokens (JWT): For user authentication and authorization.
 - bcrypt: For hashing and salting passwords.
-- Mongoose: An Object-Data Mapping library for MongoDB.
 
 ## Getting Started
 
