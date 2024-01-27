@@ -29,7 +29,7 @@ Follow the instructions below to set up and run the server:
    - Create a `.env` file in the root directory.
    - Define the following variables in the `.env` file:
      - `PORT`: The port number for the server (e.g., 3000).
-     - `MONGODB_URI`: The connection URI for your MongoDB database.
+     - `POSTGRE_URI`: The connection URI for your PostgreSQL database.
      - `JWT_SECRET`: A secret key for JWT token generation.
 5. Start the server: `npm start`
 
