@@ -24,14 +24,14 @@ Follow the instructions below to set up and run the server:
 
 1. Clone the repository: `git clone <repository-url>`
 2. Navigate to the project directory: `cd task-manager-server`
-3. Install the dependencies: `npm install`
+3. Install the dependencies: `npm i nodemon`
 4. Set up the environment variables:
    - Create a `.env` file in the root directory.
    - Define the following variables in the `.env` file:
      - `PORT`: The port number for the server (e.g., 3000).
      - `POSTGRE_URI`: The connection URI for your PostgreSQL database.
      - `JWT_SECRET`: A secret key for JWT token generation.
-5. Start the server: `npm start`
+5. Start the server: `nodemon index`
 
 The server should now be running on the specified port.
 
