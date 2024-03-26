@@ -1,6 +1,6 @@
-const { createTaskDB, getTaskDB, updateTaskDB, getTaskByIdDB, deleteSkillDB } = require('../repository/task.repository');
+import { createTaskDB, getTaskDB, updateTaskDB, getTaskByIdDB, deleteSkillDB } from '../repository/task.repository';
 
-async function createTask(task, user_id) {
+async function createTask(task: string, user_id) {
   const data = await createTaskDB(task, user_id);
   if (!data.length) throw new Error('data not found');
   return data;
@@ -12,22 +12,22 @@ async function getTask() {
   return data;
 }
 
-async function updateTask(id, task, user_id) {
+async function updateTask(id: number, task: string, user_id) {
   const data = await updateTaskDB(id, task, user_id);
   if (!data.length) throw new Error('data not found');
   return data;
 }
 
-async function getTaskById(id) {
+async function getTaskById(id: number) {
   const data = await getTaskByIdDB(id);
   if (!data.length) throw new Error('data not found');
   return data;
 }
 
-async function deleteSkill(id) {
+async function deleteSkill(id: number) {
   const data = await deleteSkillDB(id);
   if (!data.length) throw new Error('data not found');
   return data;
 }
 
-module.exports = { createTask, getTask, updateTask, getTaskById, deleteSkill };
+export { createTask, getTask, updateTask, getTaskById, deleteSkill };

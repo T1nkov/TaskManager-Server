@@ -1,4 +1,4 @@
-const pool = require('../db');
+import pool from '../db';
 
 async function createTaskDB(task, user_id) {
   const client = await pool.connect();
@@ -21,7 +21,7 @@ async function getTaskDB() {
   return rows;
 }
 
-async function updateTaskDB(id, task, user_id) {
+async function updateTaskDB(id: number, task, user_id) {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
@@ -35,14 +35,14 @@ async function updateTaskDB(id, task, user_id) {
   }
 }
 
-async function getTaskByIdDB(id) {
+async function getTaskByIdDB(id: number) {
   const client = await pool.connect();
   const sql = 'SELECT * FROM tasks where id = $1';
   const { rows } = await client.query(sql, [id]);
   return rows;
 }
 
-async function deleteSkillDB(id) {
+async function deleteSkillDB(id: number) {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
@@ -56,4 +56,4 @@ async function deleteSkillDB(id) {
   }
 }
 
-module.exports = { createTaskDB, getTaskDB, updateTaskDB, getTaskByIdDB, deleteSkillDB };
+export { createTaskDB, getTaskDB, updateTaskDB, getTaskByIdDB, deleteSkillDB };

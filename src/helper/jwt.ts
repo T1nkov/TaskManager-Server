@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 function createToken(data) {
   const secret = 'secretWord';
@@ -6,4 +6,4 @@ function createToken(data) {
   return jwt.sign(data[0], secret);
 }
 
-module.exports = { createToken };
+export { createToken };
